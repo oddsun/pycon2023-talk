@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>reveal.js</title>
+
+    <link
+      rel="stylesheet"
+      href="dist/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      href="dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="dist/theme/black.css"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
+			# <span style="color: royalblue">Data</span>-agnostic Analysis
+			---
+			> "The <span style="color: greenyellow">best</span> code is <span style="color: red">no</span> code at all."   
+			>   
+			> -Jeff Atwood
+			---
+			### <span style="color: greenyellow">Config</span> vs <span style="color: red">Code</span>
+
+			<img src="media/ansible.png" height="100em">
+			<img src="media/jenkins.png" height="100em">
+			<img src="media/Moby-logo.png" height="100em">
+			<img src="media/helm.svg" height="100em">
+			<img src="media/github_actions.png" height="100em">
+			---
+			## <span style="color: lightseagreen">An Example Analysis</span>
+			on stock <span style="color: royalblue">XYZ</span>'s data
+			| Date | Price | Volume |
+			|:----:|:-----:|:------:|
+			|Jan-1 |   10  |   100  |
+			|Jan-2 |   11  |   200  |
+			|...   | ...   |   ...  |
+			---
+			Want to know how well 
+			### stock <span style="color: royalblue">XYZ</span> 
+			did in <span style="color: greenyellow">each</span> month
+			*VS* 
+			<span style="color: red">other</span> months
+
+			e.g. `$ \frac{monthly\_avg}{avg(monthly\_avg)} $`
+			---
+      ## <span style="color: lightseagreen">Action plan</span>
+			---
+			## `pandas`
+			```python []
+			import pandas as pd
+			
+			df.sort_values(...).groupby(...).apply(...)
+			```
+			</textarea
+          >
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/math/math.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        mathjax3: {
+          mathjax:
+            "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js",
+          tex: {
+            inlineMath: [
+              ["$", "$"],
+              ["\\(", "\\)"],
+            ],
+          },
+          options: {
+            skipHtmlTags: ["script", "noscript", "style", "textarea", "pre"],
+          },
+        },
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealMath.MathJax3,
+        ],
+      });
+    </script>
+  </body>
+</html>
