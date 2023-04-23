@@ -31,6 +31,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css"
     />
+    <!-- <link
+      rel="stylesheet"
+      href="plugin/highlight/monokai.css"
+    /> -->
   </head>
   <body>
     <div class="reveal">
@@ -43,27 +47,35 @@
             height="150em"
           />
           <h5>
-            <span class="data-text">Data</span>-agnostic
-            <span class="data-text">Data</span> Analysis
+            <span class="text-blue">Data</span>-agnostic
+            <span class="text-blue">Data</span> Analysis
           </h5>
           <p>by <span class="text-green">Hao Sun</span></p>
         </section>
         <section>
           <h2>Why?</h2>
-          <p class="fragment">Because life could be so much better!! 😎</p>
+          <p class="fragment">
+            Because life could be so much
+            <span class="text-green">better</span>!! 😎
+          </p>
           <aside class="notes">
-            This talk is a little different. There is no open-source code that
-            you can play with yet. What I'm presenting is an idea that will
-            change your life and how you view data analysis. You can dream about
-            it at night or at work.
+            Once you have seen the other size there is no going back. This talk
+            is a little different. There is no open-source code that you can
+            play with yet. What I'm presenting is an idea that will change your
+            life and how you view data analysis. You can dream about it at night
+            or at work.
           </aside>
         </section>
         <section>
-          <h2>What is <span class="data-text">Data</span>-agnostic? 🤔</h2>
+          <h2>What is <span class="text-blue">Data</span>-agnostic? 🤔</h2>
           <p class="fragment">
-            <span class="bad-text">NOT</span> changing when data changes!
+            <span class="text-green">logic</span>
+            <span class="bad-text">NOT</span> changing when
+            <span class="text-blue">data</span> changes!
           </p>
-          <p class="fragment">(across iterations, features, projects, teams)</p>
+          <p class="fragment">
+            (across iterations, features, projects, teams, data-storage-medium)
+          </p>
 
           <p class="fragment my-thought">Subjective 😜</p>
           <aside class="notes">Want logic to be reusable.</aside>
@@ -156,20 +168,20 @@
           </p>
           <p class="r-stack">
             <span
-              class="text-blue fragment fade-out"
+              class="other-text fragment fade-out"
               data-fragment-index="2"
               >0<span class="text-white">s</span></span
             >
             <span
-              class="text-blue fragment fade-in-then-out"
+              class="other-text fragment fade-in-then-out"
               data-fragment-index="2"
               >1<span class="text-white">s</span></span
             >
           </p>
 
           <p>
-            in column of <span class="text-blue">0</span>s and
-            <span class="text-red">1</span>s
+            in column of <span class="other-text">0</span>s and
+            <span class="other-text">1</span>s
           </p>
         </section>
         <section>
@@ -177,6 +189,12 @@
           <ul>
             <li>Separation of data and logic</li>
             <li>Logic is modular and reusable</li>
+            <li>
+              Distill essence of
+              <span class="text-green">desired</span>
+              <span style="color: #ffca00">subset</span> of
+              <code style="color: #e70488">pandas</code>
+            </li>
           </ul>
           <aside class="notes">plug and play</aside>
         </section>
@@ -190,7 +208,7 @@
           <p><span class="text-green">The logic</span> (a json config) 🤓</p>
           <pre><code class="json" data-trim data-noescape>
           {
-            "tranformation": "agg",  # "column_operation"
+            "tranformation": "agg",  # "col_ops", "filter", "merge"
             "agg_type": "disjoint",  # "rolling"
             "func": ["sum", "avg"],
           }
@@ -207,22 +225,52 @@
         }
         </code></pre>
         </section>
-        <section>
+        <section
+          data-auto-animate
+          data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)"
+        >
           <p class="r-fit-text">
-            <span class="text-green">max, avg, min</span> of
-            <span class="text-green">length</span> of
-            <span class="text-green">streaks</span> of
-            <span class="text-blue">0</span>
-            in column "01_col" of <span class="text-blue">0</span>s and
-            <span class="text-red">1</span>s
+            <span
+              class="text-green"
+              data-id="same"
+              >max, avg, min</span
+            >
+            of
+            <span
+              class="text-green"
+              data-id="same"
+              >length</span
+            >
+            of
+            <span
+              class="text-green"
+              data-id="same"
+              >streaks</span
+            >
+            of
+            <span
+              class="other-text"
+              data-id="1"
+              >0</span
+            >s in column "01_col" of
+            <span
+              class="other-text"
+              data-id="same"
+              >0</span
+            >s and
+            <span
+              class="other-text"
+              data-id="same"
+              >1</span
+            >s
           </p>
           <div class="container">
             <div class="col">
               <p><span class="text-green">The logic</span></p>
               <pre
                 data-id="code-animation"
-              ><code class="json" data-trim data-noescape style="font-size: large;" data-line-numbers="|1-4|5-8|9-12|13-14|">
-          [{ # step 1
+              ><code class="json" data-trim data-noescape style="font-size: large;" data-line-numbers="|1-4|5-8|9-12|13-15|">
+          [ { # step 1
               "tranformation": "agg",
               "agg_type": "rolling"
               "func": ["cumsum"], }, 
@@ -235,7 +283,8 @@
               "agg_type": "disjoint",
               "func": ["max", "avg", "min"], },
             { # step 4 
-              "tranformation": "filter=0" }]
+              "tranformation": "filter",
+              "func": ["{col}=0"] }]
           </code></pre>
             </div>
 
@@ -245,9 +294,8 @@
               </p>
               <pre
                 data-id="code-animation"
-              ><code class="json" data-trim data-noescape style="font-size: large;" data-line-numbers="|2-4|5-8|9-11|12-13|">
-        [ # data
-          { # step 1
+              ><code class="json" data-trim data-noescape style="font-size: large;" data-line-numbers="|1-3|4-7|8-9|10-11|">
+        [ { # step 1
             "data_cols": ["01_col"]
             # "orderby_cols": ["index_col"], }, 
           { # step 2
@@ -255,11 +303,103 @@
             "groupby_cols": 
               ["01_col", "{result}"], }, 
           { # step 3
-            # "data_cols": ["{result}"],
             "groupby_cols": [], }
           { # step 4 
-            "data_cols": ["01_col"] }
-        ]
+            "data_cols": ["01_col"] } ]
+        </code></pre>
+            </div>
+          </div>
+
+          <aside class="notes">
+            add invert step at begining to calculate streak of 1s
+          </aside>
+        </section>
+        <section
+          data-auto-animate
+          data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)"
+        >
+          <p class="r-fit-text">
+            <span
+              class="text-green"
+              data-id="same"
+              >max, avg, min</span
+            >
+            of
+            <span
+              class="text-green"
+              data-id="same"
+              >length</span
+            >
+            of
+            <span
+              class="text-green"
+              data-id="same"
+              >streaks</span
+            >
+            of
+            <span
+              class="other-text"
+              data-id="1"
+              >1</span
+            >s in column "01_col" of
+            <span
+              class="other-text"
+              data-id="same"
+              >0</span
+            >s and
+            <span
+              class="other-text"
+              data-id="same"
+              >1</span
+            >s
+          </p>
+          <div class="container">
+            <div class="col">
+              <p><span class="text-green">The logic</span></p>
+              <pre
+                data-id="code-animation"
+              ><code class="json" data-trim data-noescape style="font-size: large;" data-line-numbers="0-3">
+          [ { # step 0 
+              "tranformation": "col_ops",
+              "func": ["1-{col}"] },
+            { # step 1
+              "tranformation": "agg",
+              "agg_type": "rolling"
+              "func": ["cumsum"], }, 
+            { # step 2
+              "tranformation": "agg",
+              "agg_type": "disjoint",
+              "func": ["count"], }, 
+            { # step 3
+              "tranformation": "agg",
+              "agg_type": "disjoint",
+              "func": ["max", "avg", "min"], },
+            { # step 4 
+              "tranformation": "filter",
+              "func": ["{col}=0"]
+             }]
+          </code></pre>
+            </div>
+
+            <div class="col">
+              <p>
+                <span class="text-blue">The data</span>
+              </p>
+              <pre
+                data-id="code-animation"
+              ><code class="json" data-trim data-noescape style="font-size: large;" data-line-numbers="0-2">
+        [ { # step 0
+            "data_cols": ["01_col"], }, 
+          { # step 1
+            # "data_cols": ["{result}"],
+            # "orderby_cols": ["index_col"], }, 
+          { # step 2
+            "groupby_cols": 
+              ["01_col", "{result}"], }, 
+          { # step 3
+            "groupby_cols": [], }
+          { # step 4 
+            "data_cols": ["01_col"] } ]
         </code></pre>
             </div>
           </div>
