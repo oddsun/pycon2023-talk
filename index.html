@@ -7,8 +7,12 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
 
-    <title>reveal.js</title>
+    <title>Pycon 2023 Lightning Talk</title>
 
+    <link
+      rel="stylesheet"
+      href="css/text_color.css"
+    />
     <link
       rel="stylesheet"
       href="dist/reset.css"
@@ -25,54 +29,421 @@
     <!-- Theme used for syntax highlighted code -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css"
     />
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
-        <section data-markdown>
-          <textarea data-template>
-			# <span style="color: royalblue">Data</span>-agnostic Analysis
-			---
-			> "The <span style="color: greenyellow">best</span> code is <span style="color: red">no</span> code at all."   
-			>   
-			> -Jeff Atwood
-			---
-			### <span style="color: greenyellow">Config</span> vs <span style="color: red">Code</span>
+        <section>
+          <h2>Simplifying</h2>
 
-			<img src="media/ansible.png" height="100em">
-			<img src="media/jenkins.png" height="100em">
-			<img src="media/Moby-logo.png" height="100em">
-			<img src="media/helm.svg" height="100em">
-			<img src="media/github_actions.png" height="100em">
-			---
-			## <span style="color: lightseagreen">An Example Analysis</span>
-			on stock <span style="color: royalblue">XYZ</span>'s data
-			| Date | Price | Volume |
-			|:----:|:-----:|:------:|
-			|Jan-1 |   10  |   100  |
-			|Jan-2 |   11  |   200  |
-			|...   | ...   |   ...  |
-			---
-			Want to know how well 
-			### stock <span style="color: royalblue">XYZ</span> 
-			did in <span style="color: greenyellow">each</span> month
-			*VS* 
-			<span style="color: red">other</span> months
+          <img
+            src="media/pandas_white.svg"
+            height="150em"
+          />
+          <h5>
+            <span class="data-text">Data</span>-agnostic
+            <span class="data-text">Data</span> Analysis
+          </h5>
+          <p>by <span class="text-green">Hao Sun</span></p>
+        </section>
+        <section>
+          <h2>Why?</h2>
+          <p class="fragment">Because life could be so much better!! 😎</p>
+          <aside class="notes">
+            This talk is a little different. There is no open-source code that
+            you can play with yet. What I'm presenting is an idea that will
+            change your life and how you view data analysis. You can dream about
+            it at night or at work.
+          </aside>
+        </section>
+        <section>
+          <h2>What is <span class="data-text">Data</span>-agnostic? 🤔</h2>
+          <p class="fragment">
+            <span class="bad-text">NOT</span> changing when data changes!
+          </p>
+          <p class="fragment">(across iterations, features, projects, teams)</p>
 
-			e.g. `$ \frac{monthly\_avg}{avg(monthly\_avg)} $`
-			---
-      ## <span style="color: lightseagreen">Action plan</span>
-			---
-			## `pandas`
-			```python []
-			import pandas as pd
-			
-			df.sort_values(...).groupby(...).apply(...)
-			```
-			</textarea
+          <p class="fragment my-thought">Subjective 😜</p>
+          <aside class="notes">Want logic to be reusable.</aside>
+        </section>
+        <section
+          data-auto-animate
+          data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)"
+        >
+          <h2>Scenario</h2>
+          <p>Calculate</p>
+          <p
+            class="fragment highlight-blue"
+            data-fragment-index="2"
           >
+            7-day
+          </p>
+          <p class="fragment highlight-green">average</p>
+          <p
+            class="fragment highlight-blue"
+            data-fragment-index="2"
+          >
+            price
+          </p>
+          <p>for</p>
+          <p
+            class="fragment highlight-blue"
+            data-fragment-index="2"
+          >
+            stock A
+          </p>
+        </section>
+        <section
+          data-auto-animate
+          data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)"
+        >
+          <h2>Scenario</h2>
+          <p>Calculate</p>
+          <p class="text-blue">1-month</p>
+          <p class="text-green">average</p>
+          <p class="text-blue">price</p>
+
+          <p>for</p>
+          <p class="text-blue">stock A</p>
+        </section>
+        <section
+          data-auto-animate
+          data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)"
+        >
+          <h2>Scenario</h2>
+          <p>Calculate</p>
+          <p class="text-blue">1-month</p>
+          <p class="text-green">average</p>
+          <p class="text-blue">volume</p>
+
+          <p>for</p>
+          <p class="text-blue">stock A</p>
+        </section>
+        <section
+          data-auto-animate
+          data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)"
+        >
+          <h2>Scenario</h2>
+          <p>Calculate</p>
+          <p class="text-blue">1-month</p>
+          <p class="text-green">average</p>
+          <p class="text-blue">volume</p>
+
+          <p>for</p>
+          <p class="text-blue">stock B</p>
+        </section>
+        <section
+          data-auto-animate
+          data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)"
+        >
+          <h2>Scenario</h2>
+          <p>Calculate</p>
+          <p class="text-blue">7-day, 14-day, 1-month</p>
+          <p class="text-green">average</p>
+          <p class="text-blue">price, volume</p>
+
+          <p>for</p>
+          <p class="text-blue">stock A, B</p>
+        </section>
+        <section>
+          <h2>More complex</h2>
+          <p>
+            Calculate <span class="text-green">max, avg, min</span> of
+            <span class="text-green">length</span> of
+            <span class="text-green">streaks</span> of
+          </p>
+          <p class="r-stack">
+            <span
+              class="text-blue fragment fade-out"
+              data-fragment-index="2"
+              >0<span class="text-white">s</span></span
+            >
+            <span
+              class="text-blue fragment fade-in-then-out"
+              data-fragment-index="2"
+              >1<span class="text-white">s</span></span
+            >
+          </p>
+
+          <p>
+            in column of <span class="text-blue">0</span>s and
+            <span class="text-red">1</span>s
+          </p>
+        </section>
+        <section>
+          <h2>Goal</h2>
+          <ul>
+            <li>Separation of data and logic</li>
+            <li>Logic is modular and reusable</li>
+          </ul>
+          <aside class="notes">plug and play</aside>
+        </section>
+        <section>
+          <p class="r-fit-text">
+            <span class="text-blue">7-day,1-month</span>
+            <span class="text-green">sum,avg</span> of
+            <span class="text-blue">stock A,B</span>'s
+            <span class="text-blue">price,volume</span>
+          </p>
+          <p><span class="text-green">The logic</span> (a json config) 🤓</p>
+          <pre><code class="json" data-trim data-noescape>
+          {
+            "tranformation": "agg",  # "column_operation"
+            "agg_type": "disjoint",  # "rolling"
+            "func": ["sum", "avg"],
+          }
+          </code></pre>
+          <p>
+            <span class="text-blue">The data</span> (another json config) 🤓
+          </p>
+          <pre><code class="json" data-trim data-noescape>
+        {
+          "data_cols": ["price", "volume"]
+          "date_col_name": "date",
+          "lookback_periods": ["7d", "1m"],
+          "groupby_cols": ["stock_name"],
+        }
+        </code></pre>
+        </section>
+        <section>
+          <p class="r-fit-text">
+            <span class="text-green">max, avg, min</span> of
+            <span class="text-green">length</span> of
+            <span class="text-green">streaks</span> of
+            <span class="text-blue">0</span>
+            in column "01_col" of <span class="text-blue">0</span>s and
+            <span class="text-red">1</span>s
+          </p>
+          <div class="container">
+            <div class="col">
+              <p><span class="text-green">The logic</span></p>
+              <pre
+                data-id="code-animation"
+              ><code class="json" data-trim data-noescape style="font-size: large;" data-line-numbers="|1-4|5-8|9-12|13-14|">
+          [{ # step 1
+              "tranformation": "agg",
+              "agg_type": "rolling"
+              "func": ["cumsum"], }, 
+            { # step 2
+              "tranformation": "agg",
+              "agg_type": "disjoint",
+              "func": ["count"], }, 
+            { # step 3
+              "tranformation": "agg",
+              "agg_type": "disjoint",
+              "func": ["max", "avg", "min"], },
+            { # step 4 
+              "tranformation": "filter=0" }]
+          </code></pre>
+            </div>
+
+            <div class="col">
+              <p>
+                <span class="text-blue">The data</span>
+              </p>
+              <pre
+                data-id="code-animation"
+              ><code class="json" data-trim data-noescape style="font-size: large;" data-line-numbers="|2-4|5-8|9-11|12-13|">
+        [ # data
+          { # step 1
+            "data_cols": ["01_col"]
+            # "orderby_cols": ["index_col"], }, 
+          { # step 2
+            # "data_cols": ["{result}"],
+            "groupby_cols": 
+              ["01_col", "{result}"], }, 
+          { # step 3
+            # "data_cols": ["{result}"],
+            "groupby_cols": [], }
+          { # step 4 
+            "data_cols": ["01_col"] }
+        ]
+        </code></pre>
+            </div>
+          </div>
+
+          <aside class="notes">
+            add invert step at begining to calculate streak of 1s
+          </aside>
+        </section>
+        <section>
+          <div style="font-size: large; text-align: center">
+            <table>
+              <thead>
+                <tr>
+                  <th>01_col</th>
+                  <th>cumsum</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  class="fragment fade-out"
+                  data-fragment-index="2"
+                >
+                  <td style="text-align: center">1</td>
+                  <td
+                    class="fragment"
+                    data-fragment-index="1"
+                    style="text-align: center"
+                  >
+                    1
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center">0</td>
+                  <td
+                    class="fragment"
+                    data-fragment-index="1"
+                    style="text-align: center"
+                  >
+                    1
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center">0</td>
+                  <td
+                    class="fragment"
+                    data-fragment-index="1"
+                    style="text-align: center"
+                  >
+                    1
+                  </td>
+                </tr>
+                <tr
+                  class="fragment fade-out"
+                  data-fragment-index="2"
+                >
+                  <td style="text-align: center">1</td>
+                  <td
+                    class="fragment"
+                    data-fragment-index="1"
+                    style="text-align: center"
+                  >
+                    2
+                  </td>
+                </tr>
+                <tr
+                  class="fragment fade-out"
+                  data-fragment-index="2"
+                >
+                  <td style="text-align: center">1</td>
+                  <td
+                    class="fragment"
+                    data-fragment-index="1"
+                    style="text-align: center"
+                  >
+                    3
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center">0</td>
+                  <td
+                    class="fragment"
+                    data-fragment-index="1"
+                    style="text-align: center"
+                  >
+                    3
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center">0</td>
+                  <td
+                    class="fragment"
+                    data-fragment-index="1"
+                    style="text-align: center"
+                  >
+                    3
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center">0</td>
+                  <td
+                    class="fragment"
+                    data-fragment-index="1"
+                    style="text-align: center"
+                  >
+                    3
+                  </td>
+                </tr>
+                <tr
+                  class="fragment fade-out"
+                  data-fragment-index="2"
+                >
+                  <td style="text-align: center">1</td>
+                  <td
+                    class="fragment"
+                    data-fragment-index="1"
+                    style="text-align: center"
+                  >
+                    4
+                  </td>
+                </tr>
+                <tr>
+                  <td style="text-align: center">0</td>
+                  <td
+                    class="fragment"
+                    data-fragment-index="1"
+                    style="text-align: center"
+                  >
+                    4
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2>🤔 Where is</h2>
+          <img
+            src="media/pandas_white.svg"
+            height="150em"
+          />
+        </section>
+        <section>
+          <h2>Can also works for</h2>
+          <p class="fragment">🤯</p>
+          <img
+            src="media/spark-logo-reverse.png"
+            height="100em"
+          />
+          <img
+            src="media/db-logo-stacked-white-desktop.svg"
+            height="100em"
+          />
+          <img
+            src="media/dask-horizontal-white.svg"
+            height="100em"
+          />
+          <p>...</p>
+          <p class="fragment">if you write adapters</p>
+        </section>
+        <section data-markdown>
+          <section data-markdown>
+            <textarea data-template>
+          > "The <span style="color: greenyellow">best</span> code is <span style="color: red">no</span> code at all."   
+          >   
+          > -Jeff Atwood
+          ---
+          ### <span style="color: greenyellow">Config</span> vs <span style="color: red">Code</span>
+
+          <img src="media/ansible.png" height="100em">
+          <img src="media/jenkins.png" height="100em">
+          <img src="media/Moby-logo.png" height="100em">
+          <img src="media/helm.svg" height="100em">
+          <img src="media/github_actions.png" height="100em">
+          </textarea
+            >
+          </section>
+        </section>
+        <section>
+          <h1>Thank you!</h1>
+          <img
+            src="media/qrcode_oddsun.github.io.png"
+            height="200em"
+          />
         </section>
       </div>
     </div>

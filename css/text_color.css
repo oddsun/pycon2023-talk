@@ -1,0 +1,46 @@
+.data-text {
+  color: royalblue;
+}
+
+.bad-text {
+  color: red;
+}
+
+.package-text {
+  color: light;
+}
+
+.my-thought {
+  color: lightgreen;
+}
+
+.text-blue {
+  color: #1b91ff;
+}
+
+.text-green {
+  color: #17ff2e;
+}
+
+.text-red {
+  color: #ff2c2d;
+}
+
+.text-white {
+  color: white;
+}
+/* .container {
+  display: grid;
+  grid-auto-flow: column;
+} */
+
+.container {
+  display: flex;
+}
+.col {
+  flex: 1;
+}
+
+.text-center {
+  text-align: center;
+}
